@@ -31,7 +31,7 @@ class _GameScreenState extends State<GameScreen> {
 
   playSound(String soundPath) async {
     if (soundOn) {
-      await audioPlayer.play(AssetSource('sounds/' + soundPath));
+      await audioPlayer.play(AssetSource(soundPath));
     }
   }
 
@@ -77,12 +77,12 @@ class _GameScreenState extends State<GameScreen> {
                           points = 0;
                           word = wordslist[Random().nextInt(wordslist.length)];
                         });
-                        playSound("restart.mp3");
+                        playSound('restart.mp3');
                       },
                       child: Center(
                         child: Text(
                           "Play Again",
-                          style: retroStyle(20, Colors.white, FontWeight.bold),
+                          style: retroStyle(20, Colors.black, FontWeight.bold),
                         ),
                       ),
                     ),
@@ -113,16 +113,16 @@ class _GameScreenState extends State<GameScreen> {
         guessedalphabets.add(alphabet);
         points += 5;
       });
-      playSound("correct.mp3");
+      playSound('correct.mp3');
     } else if (status != 6) {
       setState(() {
         status += 1;
         points -= 5;
       });
-      playSound("wrong.mp3");
+      playSound('wrong.mp3');
     } else {
       openDialog("You Lost! ");
-      playSound("lost.mp3");
+      playSound('lost.mp3');
     }
     bool isWon = true;
     for (int i = 0; i < word.length; i++) {
@@ -145,7 +145,7 @@ class _GameScreenState extends State<GameScreen> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Scaffold(
-        backgroundColor: Colors.black45,
+        backgroundColor: Color.fromARGB(255, 166, 187, 141),
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.black45,
@@ -174,7 +174,8 @@ class _GameScreenState extends State<GameScreen> {
             child: Column(
               children: [
                 Container(
-                  decoration: BoxDecoration(color: Colors.lightBlueAccent),
+                  decoration:
+                      BoxDecoration(color: Color.fromARGB(255, 234, 231, 177)),
                   margin: EdgeInsets.only(top: 20),
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width / 3.5,
@@ -197,7 +198,7 @@ class _GameScreenState extends State<GameScreen> {
                 SizedBox(height: 15),
                 Text(
                   "${7 - status} lives left",
-                  style: retroStyle(18, Colors.grey, FontWeight.w700),
+                  style: retroStyle(18, Colors.black45, FontWeight.w700),
                 ),
                 SizedBox(height: 30),
                 Text(
